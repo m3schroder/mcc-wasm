@@ -1,0 +1,19 @@
+﻿@keyframes menu-animation{
+    0%{
+        opacity: 0;
+       transform:translateY(-100px) 
+    }
+    100%{
+        opacity:1;
+       transform:translateY(0px) 
+    }
+}
+
+@keyframes menu-item-activate{
+    0%{
+        border-bottom: 1px dotted black;
+    }
+    100%{
+        border-bottom: 1px solid black;
+    }
+}

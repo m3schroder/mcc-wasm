@@ -1,0 +1,44 @@
+﻿    @foreach (var option in options)
+{
+    @if (activeOption == option)
+    {
+        <p class="active" @onclick="()=>SetActiveOption(option)">
+            @option
+        </p>
+    }
+    else if (option == "Services")
+    {
+        <div class="nav-service">
+            <p>@option</p>
+            <datalist>
+                @foreach (var service in services)
+                {
+                    if(activeOption == service)
+                    {
+                        <p  @onclick="()=>SetActiveOption(service)" class="active">@service</p>
+                    }
+                    else
+                    {
+                        <p  @onclick="()=>SetActiveOption(service)" class="inactive">@service</p>
+                    }
+                }
+            </datalist>
+        </div>
+    }
+    else
+    {
+        <p class="inactive" @onclick="()=>SetActiveOption(option)">
+            @option
+        </p>
+    }
+}
+@code {
+    public string activeOption = "Home";
+    public string[] options = new string[] { "Home", "Services", "About", "Blogs" };
+    public string[] services = new string[] { "Carpet Cleaning", "Area Rug Cleaning", "Upholstery Cleaning", "Tile Cleaning", "Professional Stain Removal", "Commercial Carpet Cleaning" };
+    public void SetActiveOption(string option)
+    {
+        activeOption = option;
+        StateHasChanged();
+    }
+}

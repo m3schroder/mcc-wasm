@@ -1,0 +1,52 @@
+﻿@import "abstracts/animations.scss";
+@import "abstracts/colors.scss";
+
+body{
+    background: $background;
+}
+.page {
+    display: grid;
+    grid-template-rows: min-content min-content;
+    grid-template-areas: "nav" "main";
+}
+main {
+    grid-area: main ;
+}
+.sidebar{
+    height: min-content;
+    grid-area: nav;
+    display:flex;
+    width: 100%;
+    padding-top: 3%;
+    justify-content:center;
+    gap: 5%;
+    flex-direction: row;
+    .nav-service{
+        padding: 5px;
+    }
+    .nav-service:hover > datalist{
+        animation: menu-animation 300ms ease-in-out;
+        display: inline;
+        position:absolute;
+        p{
+            font-size: 1rem !important;
+        }
+    }
+    .active{
+        //animation: menu-item-activate 900ms ease-in-out;
+        background: rgba(0, 0, 0,.2);
+        border-radius: 10px;
+    }
+    .inactive{
+        border-bottom: none;
+    }
+    p{
+        padding: 5px !important;
+        padding-top: 2px !important;
+        display:flex;
+        align-items:center;
+        cursor: pointer;
+        color: white;
+        font-size: 1.4rem;
+    }
+}

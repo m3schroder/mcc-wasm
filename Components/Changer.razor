@@ -1,0 +1,36 @@
+﻿<div class="changer">
+    @foreach(var option in options)
+    {
+        @if(activeOption == option)
+        {
+            <button class="active" @onclick="()=>SetActiveOption(option)">
+                @option
+            </button>
+        }
+        else
+        {
+            <button class="inactive" @onclick="()=>SetActiveOption(option)">
+                @option
+            </button>
+        }
+    }
+</div>
+
+@code{
+    [Parameter]
+    public string[] options { get; set; }
+    [Parameter]
+    public string activeOption { get; set; }
+    [Parameter]
+    public EventCallback<string> OnClick { get; set; }
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("hello");
+        base.OnInitialized();
+    }
+    public async void SetActiveOption(string option)
+    {
+        activeOption = option;
+        await OnClick.InvokeAsync(option);
+    }
+}
