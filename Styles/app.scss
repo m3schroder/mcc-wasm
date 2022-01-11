@@ -1,52 +1,110 @@
 ﻿@import "abstracts/animations.scss";
 @import "abstracts/colors.scss";
+@import "abstracts/mixins.scss";
+@import "components/home.scss";
+@import "components/about.scss";
 
-body{
+body {
     background: $background;
 }
+
 .page {
     display: grid;
     grid-template-rows: min-content min-content;
     grid-template-areas: "nav" "main";
 }
-main {
-    grid-area: main ;
-}
-.sidebar{
+
+.sidebar {
     height: min-content;
     grid-area: nav;
-    display:flex;
+    display: flex;
     width: 100%;
-    padding-top: 3%;
-    justify-content:center;
+    padding-top: 2%;
+    justify-content: center;
     gap: 5%;
     flex-direction: row;
-    .nav-service{
+
+    .nav-service {
         padding: 5px;
     }
-    .nav-service:hover > datalist{
-        animation: menu-animation 300ms ease-in-out;
+
+    .nav-service:hover > datalist {
+        animation: menu-animation 200ms ease-in-out;
         display: inline;
-        position:absolute;
-        p{
+        position: absolute;
+        background: white;
+        box-shadow: 0px 0px 20px rgba(0,0,0,.2);
+        padding: 4px;
+        border-radius: 10px;
+
+        p {
+            color: rgba(0,0,0,.7);
+            font-weight: bold;
             font-size: 1rem !important;
+            padding: 2px;
         }
     }
-    .active{
+
+    .active {
         //animation: menu-item-activate 900ms ease-in-out;
         background: rgba(0, 0, 0,.2);
         border-radius: 10px;
     }
-    .inactive{
+
+    .inactive {
         border-bottom: none;
     }
-    p{
+
+    p {
+        text-decoration: none;
         padding: 5px !important;
         padding-top: 2px !important;
-        display:flex;
-        align-items:center;
+        display: flex;
+        align-items: center;
         cursor: pointer;
         color: white;
         font-size: 1.4rem;
+        margin-bottom: 0px;
     }
+}
+
+main {
+    grid-area: main;
+    @include flex-center;
+
+    #banner {
+        //background: linear-gradient(90deg, $background, 30%,white, 70%, $background);
+        width: 100%;
+        padding: 20px;
+        @include flex-center;
+
+        h1 {
+            font-size: 4rem;
+        }
+    }
+
+    #page-content {
+        width: 100%;
+        padding: 2%;
+    }
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
+
+.four {
+    grid-area: four;
+}
+
+.five {
+    grid-area: five;
 }

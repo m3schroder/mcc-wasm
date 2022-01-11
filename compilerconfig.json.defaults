@@ -1,6 +1,6 @@
 {
   "compilers": {
-       "sass": {
+    "sass": {
       "autoPrefix": "",
       "loadPaths": [],
       "style": 0,
@@ -8,8 +8,8 @@
       "quiet": true,
       "quietDeps": true,
       "sourceMap": false
-    },
-     },
+    }
+  },
   "minifiers": {
     "css": {
       "enabled": true,

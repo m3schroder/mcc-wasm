@@ -1,25 +1,30 @@
-﻿    @foreach (var option in options)
+﻿@using mcc_wasm.Services;
+@using System.Linq;
+
+@inject StateContainer Service;
+
+@foreach (var option in options)
 {
-    @if (activeOption == option)
+    @if (Service.activeNav == option)
     {
         <p class="active" @onclick="()=>SetActiveOption(option)">
             @option
         </p>
     }
-    else if (option == "Services")
+    else if (option == "Cleaning Services")
     {
         <div class="nav-service">
             <p>@option</p>
             <datalist>
                 @foreach (var service in services)
                 {
-                    if(activeOption == service)
+                    if (Service.activeNav == service)
                     {
-                        <p  @onclick="()=>SetActiveOption(service)" class="active">@service</p>
+                        <p @onclick="()=>SetActiveOption(service)" class="active">@service</p>
                     }
                     else
                     {
-                        <p  @onclick="()=>SetActiveOption(service)" class="inactive">@service</p>
+                        <p @onclick="()=>SetActiveOption(service)" class="inactive">@service</p>
                     }
                 }
             </datalist>
@@ -27,18 +32,19 @@
     }
     else
     {
-        <p class="inactive" @onclick="()=>SetActiveOption(option)">
-            @option
-        </p>
+        <p class="inactive" @onclick="()=>SetActiveOption(option)">@option</p>
     }
 }
 @code {
-    public string activeOption = "Home";
-    public string[] options = new string[] { "Home", "Services", "About", "Blogs" };
-    public string[] services = new string[] { "Carpet Cleaning", "Area Rug Cleaning", "Upholstery Cleaning", "Tile Cleaning", "Professional Stain Removal", "Commercial Carpet Cleaning" };
+    public string[] options = new string[] { "Home", "Cleaning Services", "About", "Gallery", "Blogs" };
+    public string[] services = new string[] { "Carpet", "Rugs", "Upholstery", "Tile", "Stain Removal", "Commercial Carpet" };
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
     public void SetActiveOption(string option)
     {
-        activeOption = option;
+        Service.activeNav = option;
+        NavigationManager.NavigateTo("/" + String.Concat(option.Where(c => !Char.IsWhiteSpace(c))));
         StateHasChanged();
     }
 }

@@ -1,0 +1,30 @@
+﻿@import "../abstracts/mixins.scss";
+
+#about {
+    @include page;
+
+    > div {
+        @include flex-center($direction: row);
+        border-radius: 10px;
+        box-shadow: 0px 5px 20px rgba(0,0,0,0.5);
+        background: $text-bg;
+        text-align: center;
+        padding: 10px;
+    }
+
+    p {
+        white-space: pre-line;
+        font-size: 1.2rem;
+        text-align: justify;
+    }
+
+    h3 {
+        font-size: 4.5rem;
+        width: 30%;
+    }
+
+    section {
+        padding: 20px;
+        @include flex-center;
+    }
+}

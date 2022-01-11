@@ -1,0 +1,7 @@
+﻿@import "../abstracts/mixins.scss";
+
+#home {
+    @include page;
+    grid-template-rows: 20vh 30vh 30vh;
+    grid-template-areas: "one two" "three four" "three five";
+}
