@@ -4,8 +4,23 @@
 @import "components/home.scss";
 @import "components/about.scss";
 
-body {
-    background: $background;
+@mixin scrollable {
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-button {
+    }
+
+    ::-webkit-scrollbar-thumb {
+    }
+
+    ::-webkit-scrollbar-track {
+    }
+
+    ::-webkit-scrollbar-track-piece {
+    }
 }
 
 .page {
@@ -15,22 +30,24 @@ body {
 }
 
 .sidebar {
+    display: flex;
+    justify-content: center;
     height: min-content;
-    grid-area: nav;
+    padding: 1%;
+    background: $background;
     display: flex;
     width: 100%;
-    padding-top: 2%;
     justify-content: center;
     gap: 5%;
     flex-direction: row;
 
     .nav-service {
-        padding: 5px;
+        padding: 0px;
     }
 
     .nav-service:hover > datalist {
         animation: menu-animation 200ms ease-in-out;
-        display: inline;
+        display: inline-block;
         position: absolute;
         background: white;
         box-shadow: 0px 0px 20px rgba(0,0,0,.2);
@@ -73,7 +90,6 @@ main {
     @include flex-center;
 
     #banner {
-        //background: linear-gradient(90deg, $background, 30%,white, 70%, $background);
         width: 100%;
         padding: 20px;
         @include flex-center;
@@ -84,8 +100,13 @@ main {
     }
 
     #page-content {
+        @include scrollable;
         width: 100%;
         padding: 2%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 

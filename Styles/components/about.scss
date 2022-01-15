@@ -2,6 +2,8 @@
 
 #about {
     @include page;
+    background: blue !important;
+    width: 70%;
 
     > div {
         @include flex-center($direction: row);
