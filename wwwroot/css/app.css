@@ -105,14 +105,12 @@
   width: min-content;
   height: min-content;
 }
-
-.hide {
+.modal-container .hide {
   display: none;
   transform: scale(0);
   animation: slide-up 300ms ease-in-out;
 }
-
-.show {
+.modal-container .show {
   display: inline;
   transform: scale(1);
   animation: slide-down 300ms ease-in-out;
