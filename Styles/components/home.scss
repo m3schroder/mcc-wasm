@@ -1,7 +1,49 @@
 ﻿@import "../abstracts/mixins.scss";
+@import "../abstracts/animations.scss";
 
 #home {
     @include page;
     grid-template-rows: 20vh 30vh 30vh;
     grid-template-areas: "one two" "three four" "three five";
 }
+
+.modal-container{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left:0;
+    overflow: hidden;
+    .modal-background{
+        display: block;
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: transparent;
+    }
+    .modal-content{
+        width: min-content;
+        height: min-content;
+    }
+    .hide{
+        display:none;
+        transform: scale(0);
+        animation: slide-up 300ms ease-in-out;
+    }
+    .show{
+        display:inline;
+        transform: scale(1);
+        animation: slide-down 300ms ease-in-out;
+    }
+}
+
+.modal-toggle{
+    width: fit-content;
+}
+
+

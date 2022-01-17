@@ -30,7 +30,7 @@
   width: 100%;
   gap: 30px;
   background: blue !important;
-  width: 50%; }
+  width: 70%; }
   #about section {
     display: flex;
     background: white;
@@ -61,28 +61,27 @@
     align-items: center;
     flex-direction: column; }
 
-body {
-  background: #284b63; }
-
 .page {
   display: grid;
   grid-template-rows: min-content min-content;
   grid-template-areas: "nav" "main"; }
 
 .sidebar {
+  display: flex;
+  justify-content: center;
   height: min-content;
-  grid-area: nav;
+  padding: 1%;
+  background: #284b63;
   display: flex;
   width: 100%;
-  padding-top: 2%;
   justify-content: center;
   gap: 5%;
   flex-direction: row; }
   .sidebar .nav-service {
-    padding: 5px; }
+    padding: 0px; }
   .sidebar .nav-service:hover > datalist {
     animation: menu-animation 200ms ease-in-out;
-    display: inline;
+    display: inline-block;
     position: absolute;
     background: white;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
@@ -126,7 +125,13 @@ main {
       font-size: 4rem; }
   main #page-content {
     width: 100%;
-    padding: 2%; }
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    main #page-content ::-webkit-scrollbar {
+      width: 10px; }
 
 .one {
   grid-area: one; }
