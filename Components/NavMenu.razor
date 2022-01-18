@@ -1,43 +1,53 @@
 ﻿@using mcc_wasm.Services;
 @using System.Linq;
-
 @inject StateContainer Service;
 
+<i class="material-icons">
+    phone
+</i>
+<section class="menu">
     @foreach (var option in options)
-{
-    @if (Service.activeNav == option)
     {
-        <p class="active" @onclick="()=>SetActiveOption(option)">
-            @option
-        </p>
-    }
-    else if (option == "Cleaning Services")
-    {
-        <div class="nav-service">
-            <p>@option</p>
-            <datalist>
-                @foreach (var service in services)
-                {
-                    if (Service.activeNav == service)
+        @if (Service.activeNav == option)
+        {
+            <p class="active" @onclick="()=>SetActiveOption(option)">
+                @option
+            </p>
+        }
+        else if (option == "Cleaning Services")
+        {
+            <div class="nav-service">
+                <p>@option</p>
+                <datalist>
+                    @foreach (var service in services)
                     {
-                        <p @onclick="()=>SetActiveOption(service)" class="active">@service</p>
+                        if (Service.activeNav == service)
+                        {
+                            <p @onclick="()=>SetActiveOption(service)" class="active">@service</p>
+                        }
+                        else
+                        {
+                            <p @onclick="()=>SetActiveOption(service)" class="inactive">@service</p>
+                        }
                     }
-                    else
-                    {
-                        <p @onclick="()=>SetActiveOption(service)" class="inactive">@service</p>
-                    }
-                }
-            </datalist>
-        </div>
+                </datalist>
+            </div>
+        }
+        else
+        {
+            <p class="inactive" @onclick="()=>SetActiveOption(option)">@option</p>
+        }
     }
-    else
-    {
-        <p class="inactive" @onclick="()=>SetActiveOption(option)">@option</p>
-    }
-}
+</section>
+<i class="material-icons" @onclick="Toggle">
+    mail
+</i>
 @code {
+
     public string[] options = new string[] { "Home", "Cleaning Services", "About", "Gallery", "Blogs" };
     public string[] services = new string[] { "Carpet", "Rugs", "Upholstery", "Tile", "Stain Removal", "Commercial Carpet" };
+    [Parameter]
+    public EventCallback ContactToggle { get; set; }
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
@@ -46,5 +56,9 @@
         Service.activeNav = option;
         NavigationManager.NavigateTo("/" + String.Concat(option.Where(c => !Char.IsWhiteSpace(c))));
         StateHasChanged();
+    }
+    public async void Toggle()
+    {
+        await ContactToggle.InvokeAsync();
     }
 }

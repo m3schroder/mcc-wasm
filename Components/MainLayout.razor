@@ -1,8 +1,21 @@
 ﻿@inherits LayoutComponentBase
+@using mcc_wasm.Services;
+@inject StateContainer Service;
+
+<Modal Open=@contactOpen Toggle="FormToggle">
+    <Body>
+        <ContactForm />
+    </Body>
+    <Footer>
+        Footer
+    </Footer>
+</Modal>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <div id="nav-container">
+        <div id="navbar">
+            <NavMenu ContactToggle="FormToggle" />
+        </div>
     </div>
 
     <main>
@@ -11,3 +24,20 @@
         </div>
     </main>
 </div>
+
+@if (contactOpen)
+{
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+}
+@code {
+    public bool contactOpen = false;
+    public void FormToggle()
+    {
+        contactOpen = !contactOpen;
+        StateHasChanged();
+    }
+}

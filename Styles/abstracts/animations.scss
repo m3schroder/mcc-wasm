@@ -1,37 +1,51 @@
-﻿@keyframes menu-animation{
-    0%{
+﻿@keyframes menu-animation {
+    0% {
         opacity: 0;
-       transform:translateY(-100px) 
+        transform: translateY(-100px)
     }
-    100%{
-        opacity:1;
-       transform:translateY(0px) 
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
     }
 }
 
-@keyframes menu-item-activate{
-    0%{
-        border-bottom: 1px dotted black;
+@keyframes menu-animation-collapsed {
+    0% {
+        opacity: 0;
+        max-height: 0px;
     }
-    100%{
-        border-bottom: 1px solid black;
+
+    30% {
+        opacity: .35;
+    }
+
+    100% {
+        opacity: 1;
+        max-height: 500px;
     }
 }
 
-@keyframes slide-down{
-    0%{
-        transform:scale(0)
+@keyframes slide-down {
+    0% {
+        transform: scale(0)
     }
-    100%{
-        transform:scale(1)
+
+    100% {
+        transform: scale(1)
     }
 }
 
-@keyframes slide-up{
-    0%{
-        transform:scale(1)
+@keyframes icon-jump {
+    0% {
+        transform: translateY(0px);
     }
-    100%{
-        transform:scale(0)
+
+    50% {
+        transform: translateY(3px);
+    }
+
+    100% {
+        transform: translateY(0px);
     }
 }

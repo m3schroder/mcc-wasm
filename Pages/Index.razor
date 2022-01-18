@@ -2,19 +2,6 @@
 
 <PageTitle>Miraculous Carpet Care</PageTitle>
 
-<Modal Open=@contactOpen Toggle="Toggle">
-    <Body>
-        <ContactForm/>
-    </Body>
-    <Footer>
-        Footer
-    </Footer>
-</Modal>
-
-<button class="modal-toggle" @onclick="Toggle">
-    Launch
-</button>
-
 <div id="home">
     <section class="one"></section>
     <section class="two"></section>
@@ -22,17 +9,3 @@
     <section class="four"></section>
     <section class="five"></section>
 </div>
-
-
-@code{
-    public bool contactOpen = false;
-    public void Log()
-    {
-        Console.WriteLine("Hello");
-    }
-    public void Toggle()
-    {
-        contactOpen = !contactOpen;
-        StateHasChanged();
-    }
-}

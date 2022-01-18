@@ -4,84 +4,216 @@
 @import "components/home.scss";
 @import "components/about.scss";
 
-@mixin scrollable {
-
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-button {
-    }
-
-    ::-webkit-scrollbar-thumb {
-    }
-
-    ::-webkit-scrollbar-track {
-    }
-
-    ::-webkit-scrollbar-track-piece {
-    }
+::-webkit-scrollbar {
+    width: 0px;
 }
 
 .page {
     display: grid;
+    padding: 1%;
+    gap: 3vh;
     grid-template-rows: min-content min-content;
     grid-template-areas: "nav" "main";
 }
 
-.sidebar {
+#nav-container {
     display: flex;
     justify-content: center;
-    height: min-content;
-    padding: 1%;
-    background: $background;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 5%;
-    flex-direction: row;
 
-    .nav-service {
-        padding: 0px;
-    }
+    #navbar {
+        display: flex;
+        grid-area: nav;
+        justify-content: center;
+        height: min-content;
+        box-shadow: 0px 10px 20px rgba(0,0,0,.1);
+        background: $background;
+        padding: 10px 30px 10px 30px;
+        width: 95%;
+        white-space: nowrap;
+        margin-top: 10px;
+        border-radius: $radius;
+        justify-content: space-between;
 
-    .nav-service:hover > datalist {
-        animation: menu-animation 200ms ease-in-out;
-        display: inline-block;
-        position: absolute;
-        background: white;
-        box-shadow: 0px 0px 20px rgba(0,0,0,.2);
-        padding: 4px;
-        border-radius: 10px;
+        .menu {
+            @include flex-center($direction: row);
+            width: 60%;
+            gap: 5%;
+        }
+
+        .nav-service:hover > datalist {
+            animation: menu-animation 200ms ease-in-out;
+            display: inline-block;
+            position: absolute;
+            padding: 1%;
+            background: $background;
+            border-radius: $radius;
+
+            p {
+                color: white;
+                line-height: 2rem;
+                font-size: 1rem !important;
+                white-space: nowrap;
+                padding: 2px;
+            }
+        }
+
+        .active {
+            background: rgba(0, 0, 0,.2);
+            border-radius: 10px;
+        }
+
+        .inactive {
+            border-bottom: none;
+        }
 
         p {
-            color: rgba(0,0,0,.7);
-            font-weight: bold;
-            font-size: 1rem !important;
-            padding: 2px;
+            text-decoration: none;
+            padding: 5px !important;
+            padding-top: 2px !important;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 0px;
+        }
+
+        i {
+            font-size: 2.2rem;
+            cursor: pointer;
+            color: white;
+            margin-left: 10px;
+            @include flex-center;
+        }
+
+        i:active {
+            animation: icon-jump 100ms ease-in-out;
+        }
+    }
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+
+    .modal-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.1);
+    }
+
+    section {
+        position: relative;
+        background: $background;
+        z-index: 800;
+        padding: 50px;
+        width: min-content;
+        height: min-content;
+    }
+
+    .hide {
+        display: none;
+        transform: scale(0);
+        animation: slide-up 300ms ease-in-out;
+    }
+
+    .show {
+        display: inline;
+        transform: scale(1);
+        animation: slide-down 300ms ease-in-out;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+    .page {
+        padding: 2%;
+    }
+
+    #nav-container {
+        position: fixed;
+        width: 96%;
+        bottom: 1vh;
+        display: flex;
+        justify-content: center;
+
+        #navbar {
+            height: 5vh;
+            width: 100%;
+            padding: 2%;
+            justify-content: space-between;
+
+            .nav-service:hover > datalist {
+                @include flex-center;
+                width: 100%;
+                animation: menu-animation-collapsed 200ms linear;
+                bottom: 5vh;
+                padding: 2%;
+                left: 0;
+                box-shadow: none;
+
+                p {
+                    @include flex-center;
+                    color: white;
+                    font-weight: normal;
+                    width: 20vw;
+                    padding: 5px !important;
+                }
+            }
+
+            p {
+                padding: 5px !important;
+                padding-top: 2px !important;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                color: white;
+                font-size: 1.0rem;
+                margin-bottom: 0px;
+            }
+
+            i {
+                font-size: 1.6rem;
+            }
         }
     }
 
-    .active {
-        //animation: menu-item-activate 900ms ease-in-out;
-        background: rgba(0, 0, 0,.2);
-        border-radius: 10px;
-    }
+    main {
+        margin-bottom: 10vh;
 
-    .inactive {
-        border-bottom: none;
-    }
+        #banner {
+            width: 100%;
+            padding: 20px;
+            @include flex-center;
 
-    p {
-        text-decoration: none;
-        padding: 5px !important;
-        padding-top: 2px !important;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        color: white;
-        font-size: 1.4rem;
-        margin-bottom: 0px;
+            h1 {
+                font-size: 4rem;
+            }
+        }
+
+        #page-content {
+            width: 100%;
+            padding: 2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
     }
 }
 
@@ -100,9 +232,7 @@ main {
     }
 
     #page-content {
-        @include scrollable;
         width: 100%;
-        padding: 2%;
         display: flex;
         justify-content: center;
         align-items: center;
